@@ -13,14 +13,14 @@ export default EStyleSheet.create({
     width: imageWidth,
     height: imageWidth,
   },
-  image: {
+  logo: {
     width: imageWidth / 2,
   },
   text: {
-    fontWeight: '600',
-    fontSize: '28',
+    color: '$white',
+    fontSize: 28,
     letterSpacing: -0.5,
     marginTop: 15,
-    color: '$white',
+    fontWeight: '600',
   },
 });
