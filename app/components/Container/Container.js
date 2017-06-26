@@ -3,10 +3,11 @@ import { View } from 'react-native';
 
 import styles from './styles';
 
-const Container = ({ children }) =>
+const Container = ({ children }) => (
   <View style={styles.container}>
     {children}
-  </View>;
+  </View>
+);
 
 Container.propTypes = {
   children: PropTypes.any,
