@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { ScrollView, StatusBar, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,12 +9,17 @@ const ICON_COLOR = '#868686';
 const ICON_SIZE = 23;
 
 class Options extends Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
+
   handleThemePress = () => {
     console.log('press theme');
+    this.props.navigation.navigate('Themes');
   };
 
   handleSitePress = () => {
-    console.log('press theme');
+    console.log('press site');
   };
 
   render() {
