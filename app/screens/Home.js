@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { StatusBar, KeyboardAvoidingView } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Container } from '../components/Container';
 import { Logo } from '../components/Logo';
@@ -10,7 +11,7 @@ import { ClearButton } from '../components/Buttons';
 import { LastConverted } from '../components/Text';
 import { Header } from '../components/Header';
 
-import { changeCurrencyAmount, swapCurrency } from '../components/actions/currencies';
+import { changeCurrencyAmount, swapCurrency } from '../actions/currencies';
 
 const TEMP_BASE_CURRENCY = 'USD';
 const TEMP_QUOTE_CURRENCY = 'GBP';
@@ -22,11 +23,11 @@ const TEMP_CONVERSION_RATE = 0.7974;
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object,
+    dispatch: PropTypes.func,
   };
 
   handleChangeText = (amount) => {
-    // TODO: dispatch this action to redux
-    console.log(changeCurrencyAmount(amount));
+    this.props.dispatch(changeCurrencyAmount(amount));
   };
 
   handlePressBaseCurrency = () => {
@@ -38,8 +39,7 @@ class Home extends Component {
   };
 
   handleSwapCurrency = () => {
-    // TODO: dispatch this action to redux
-    console.log(swapCurrency());
+    this.props.dispatch(swapCurrency());
   };
 
   handleOptionsPress = () => {
@@ -79,4 +79,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);
