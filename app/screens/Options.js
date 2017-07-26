@@ -16,12 +16,10 @@ class Options extends Component {
   };
 
   handleThemePress = () => {
-    console.log('press theme');
     this.props.navigation.navigate('Themes');
   };
 
   handleSitePress = () => {
-    console.log('press site');
     Linking.openURL('http://fixer.io').catch(() =>
       this.props.alertWithType('error', 'Sorry!', "Fixer.io can't be opened right now."),
     );
