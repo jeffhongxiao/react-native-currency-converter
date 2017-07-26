@@ -1,10 +1,32 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, call, put, select } from 'redux-saga/effects';
 
-import { GET_INITIAL_CONVERSION, SWAP_CURRENCY, CHANGE_BASE_CURRENCY } from '../actions/currencies';
+import {
+  GET_INITIAL_CONVERSION,
+  SWAP_CURRENCY,
+  CHANGE_BASE_CURRENCY,
+  CONVERSION_ERROR,
+  CONVERSION_RESULT,
+} from '../actions/currencies';
+
+export const getLatestRate = currency => fetch(`http://api.fixer.io/latest?base=${currency}`);
 
 function* fetchLatestConversionRate(action) {
-  console.log('TODO: Update the rates.', action);
-  yield;
+  try {
+    let currency = action.currency;
+    if (currency === undefined) {
+      currency = yield select(state => state.currencies.baseCurrency);
+    }
+
+    const response = yield call(getLatestRate, currency);
+    const result = yield response.json();
+    if (result.error) {
+      yield put({ type: CONVERSION_ERROR, error: result.error });
+    } else {
+      yield put({ type: CONVERSION_RESULT, result });
+    }
+  } catch (error) {
+    yield put({ type: CONVERSION_ERROR, error: error.message });
+  }
 }
 
 export default function* rootSaga() {
