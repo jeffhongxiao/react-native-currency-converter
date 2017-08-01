@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   baseCurrency: 'CAD',
-  quoteCurrency: 'CNY',
+  quoteCurrency: 'USD',
   amount: 100,
   conversions: {},
   error: '',
