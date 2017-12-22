@@ -1,7 +1,19 @@
 {
   "expo": {
+    "name": "Currency Converter",
+    "icon": "./app/images/yuan.png",
+    "version": "1.0.0",
+    "slug": "currencyconverter",
+
     "sdkVersion": "19.0.0",
     "orientation": "portrait",
-    "privacy": "public"
+    "privacy": "public",
+
+    "ios": {
+      "bundleIdentifier": "com.taoprogrammer.currencyconverter"
+    },
+    "android": {
+      "package": "com.taoprogrammer.currencyconverter"
+    }
   }
 }
